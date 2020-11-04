@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dj.boot.mapper.KcMapper">
+
+
+    <select id="findAll" resultType="com.dj.boot.bo.KcBO">
+        SELECT
+            k.id as kcId,
+            k.kc_name,
+            k.start_time,
+            k.end_time,
+            COUNT(u.kc_id) AS kcNum
+        FROM
+            `user` u
+        LEFT JOIN kc k ON k.id = u.kc_id
+        GROUP BY
+            u.kc_id
+    </select>
+</mapper>
